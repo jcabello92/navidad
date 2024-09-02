@@ -1,0 +1,54 @@
+/* IMPORTACIONES */
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
+
+	.subtitulo
+	{
+		text-align: center;
+		margin-top: 50px;
+		margin-bottom: 10px;
+	}
+
+	.parrafo
+	{
+		font-family: 'Quicksand', sans-serif;
+		font-size: 120%;
+		color: #012E40;
+		text-align: justify;
+		margin-top: 25px;
+	}
+
+	.modal-general
+	{
+		height: 100%;
+		width: 100%;
+		z-index: 3;
+		left: 0;
+		top: 0;
+		position: fixed;
+		background-color: rgba(0,0,0,0.5);
+		display: none;
+  	}
+
+  	.modal-principal
+	{
+		width: 35%;
+		margin: 10% auto;
+		padding: 20px;
+		background-color: #ffffff;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.05), 0 17px 50px 0 rgba(0,0,0,0.05);
+		border-radius: 15px;
+	}
+
+	.boton-modal
+	{
+		background-color: #012E40;
+		margin-top: 25px;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.05), 0 17px 50px 0 rgba(0,0,0,0.05);
+	}
+
+	.boton-modal:hover
+	{
+		background-color: #012E40;
+		box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	}
