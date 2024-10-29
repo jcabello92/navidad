@@ -231,12 +231,6 @@
                                             <span class="d-sm-inline d-none" <?php if($dato != '') echo 'style="color: #012E40;"'; else echo 'style="color: grey;" disabled'; ?>>Quitar filtros</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item px-4 d-flex align-items-center">
-                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                                            <i class="bi bi-trash-fill me-sm-1" <?php if($dato != '') echo 'style="color: red;"'; else echo 'style="color: grey;" disabled'; ?>></i>
-                                            <span class="d-sm-inline d-none" <?php if($dato != '') echo 'style="color: red;"'; else echo 'style="color: grey;" disabled'; ?>>Eliminar seleccionadas</span>
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
