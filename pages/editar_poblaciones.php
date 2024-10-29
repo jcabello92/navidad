@@ -30,11 +30,17 @@
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script src="sweetalert2.all.min.js"></script>
       <script src="../js/rut.js"></script>
+      <script src="../js/main.js"></script>
     </head>
     <!-- FIN HEAD -->
 
     <form name="edi-poblacion" id="edi-poblacion" method="post" action="editar_poblacion.php">
       <input type="text" style="display: none;" name="id" id="id" value="">
+    </form>
+
+    <form name="filtrar" id="filtrar" method="post" action="editar_poblaciones.php">
+      <input type="text" style="display: none;" name="tipo" id="tipo" value="">
+      <input type="text" style="display: none;" name="dato" id="dato" value="">
     </form>
 
     <!-- INICIO JAVASCRIPT -->
@@ -51,8 +57,13 @@
     <?php
       include('../php/bd.php');
 
-      $tipo = 'NOMBRE'; // CARGAR AQUÍ EL TIPO DE DATO REQUERIDO...
+      $tipo = 'POB_NOMBRE';
       $dato = '';
+
+      if(isset($_POST['tipo']))
+      {
+        $dato = $_POST['tipo'];
+      }
 
       if(isset($_POST['dato']))
       {
@@ -209,12 +220,12 @@
               <div class="col-xl-4 col-lg-5 col-md-7 mx-auto pt-3 pb-5">
                   <div class="input-group">
                       <select class="form-select" style="background-color: #ECEFF1" id="tipo_dato">
-                          <option value="poblacion" selected>NOMBRE</option>
+                          <option value="POB_NOMBRE" <?php if ($tipo == "POB_NOMBRE") echo "selected"; ?>>NOMBRE</option>
                       </select>
-                      <input type="text" class="form-control" style="width: 40%;" id="buscar">
+                      <input type="text" class="form-control" style="width: 40%;" id="buscar" <?php echo "value='" . $dato . "'"; ?>>
                   </div>
                   <div class="text-center">
-                      <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" id="registrar">Buscar</button>
+                      <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" id="boton_buscar" onclick="filtrar_datos()">Buscar</button>
                   </div>
               </div>
               <div class="row">
@@ -224,7 +235,7 @@
                             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4">
                                 <ul class="navbar-nav  justify-content-end">
                                     <li class="nav-item d-flex align-items-center">
-                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0" onclick="recargar_pagina('editar_poblaciones.php')">
                                             <i class="bi bi-filter me-sm-1" <?php if($dato != '') echo 'style="color: #012E40;"'; else echo 'style="color: grey;" disabled'; ?>></i>
                                             <span class="d-sm-inline d-none" <?php if($dato != '') echo 'style="color: #012E40;"'; else echo 'style="color: grey;" disabled'; ?>>Quitar filtros</span>
                                         </a>

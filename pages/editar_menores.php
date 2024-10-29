@@ -30,11 +30,17 @@
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script src="sweetalert2.all.min.js"></script>
       <script src="../js/rut.js"></script>
+      <script src="../js/main.js"></script>
     </head>
     <!-- FIN HEAD -->
 
     <form name="edi-menor" id="edi-menor" method="post" action="editar_menor.php">
       <input type="text" style="display: none;" name="rut" id="rut" value="">
+    </form>
+
+    <form name="filtrar" id="filtrar" method="post" action="editar_menores.php">
+      <input type="text" style="display: none;" name="tipo" id="tipo" value="">
+      <input type="text" style="display: none;" name="dato" id="dato" value="">
     </form>
 
     <!-- INICIO JAVASCRIPT -->
@@ -51,8 +57,13 @@
     <?php
       include('../php/bd.php');
 
-      $tipo = 'RUT'; // CARGAR AQUÍ EL TIPO DE DATO REQUERIDO...
+      $tipo = 'MEN_RUT';
       $dato = '';
+
+      if(isset($_POST['tipo']))
+      {
+        $tipo = $_POST['tipo'];
+      }
 
       if(isset($_POST['dato']))
       {

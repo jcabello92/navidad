@@ -619,8 +619,18 @@ function mostrar_jdv($tipo, $dato)
   {
     if($tipo != '' && $dato != '')
     {
-
-      $sql = "SELECT * FROM juntas_vecinales, poblaciones, delegados WHERE juntas_vecinales.POB_ID = poblaciones.POB_ID AND juntas_vecinales.DEL_RUT = delegados.DEL_RUT AND " . $tipo . " LIKE '%" . $dato . "%';";
+        if($tipo == 'JV_NOMBRE')
+        {
+            $sql = "SELECT * FROM juntas_vecinales, poblaciones, delegados WHERE juntas_vecinales.POB_ID = poblaciones.POB_ID AND juntas_vecinales.DEL_RUT = delegados.DEL_RUT AND juntas_vecinales." . $tipo . " LIKE '%" . $dato . "%';";
+        }
+        else if($tipo == 'POB_NOMBRE')
+        {
+            $sql = "SELECT * FROM juntas_vecinales, poblaciones, delegados WHERE juntas_vecinales.POB_ID = poblaciones.POB_ID AND juntas_vecinales.DEL_RUT = delegados.DEL_RUT AND poblaciones." . $tipo . " LIKE '%" . $dato . "%';";
+        }
+        else if($tipo == 'DELEGADO')
+        {
+            $sql = "SELECT * FROM juntas_vecinales, poblaciones, delegados WHERE juntas_vecinales.POB_ID = poblaciones.POB_ID AND juntas_vecinales.DEL_RUT = delegados.DEL_RUT AND (delegados.DEL_RUT LIKE '%" . $dato . "%' OR delegados.DEL_NOMBRE LIKE '%" . $dato . "%' OR delegados.DEL_APELLIDO LIKE '%" . $dato . "%');";
+        }
     }
     else if($tipo == '' || $dato == '')
     {
