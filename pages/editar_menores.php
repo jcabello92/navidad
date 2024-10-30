@@ -220,16 +220,15 @@
                 <div class="col-xl-4 col-lg-5 col-md-7 mx-auto pt-3 pb-5">
                     <div class="input-group">
                         <select class="form-select" style="background-color: #ECEFF1" id="tipo_dato">
-                            <option value="rut" selected>RUT</option>
-                            <option value="nombre">NOMBRE</option>
-                            <option value="apellido">APELLIDO</option>
-                            <option value="apellido">JUNTA DE VECINOS</option>
-                            <option value="apellido">SEXO</option>
+                            <option value="MEN_RUT" <?php if ($tipo == "MEN_RUT") echo "selected"; ?>>RUT</option>
+                            <option value="MEN_NOMBRE" <?php if ($tipo == "MEN_NOMBRE") echo "selected"; ?>>NOMBRE</option>
+                            <option value="MEN_APELLIDO" <?php if ($tipo == "MEN_APELLIDO") echo "selected"; ?>>APELLIDO</option>
+                            <option value="JV_NOMBRE" <?php if ($tipo == "JV_NOMBRE") echo "selected"; ?>>JUNTA DE VECINOS</option>
                         </select>
-                        <input type="text" class="form-control" style="width: 40%;" id="dato" name="dato">
+                        <input type="text" class="form-control" style="width: 40%;" id="buscar" <?php echo "value='" . $dato . "'"; ?>>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" id="registrar">Buscar</button>
+                        <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" id="boton_buscar" onclick="filtrar_datos()">Buscar</button>
                     </div>
                 </div>
                 <div class="row">
@@ -239,7 +238,7 @@
                             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4">
                                 <ul class="navbar-nav  justify-content-end">
                                     <li class="nav-item d-flex align-items-center">
-                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0" onclick="recargar_pagina('editar_menores.php')">
                                             <i class="bi bi-filter me-sm-1" <?php if($dato != '') echo 'style="color: #012E40;"'; else echo 'style="color: grey;" disabled'; ?>></i>
                                             <span class="d-sm-inline d-none" <?php if($dato != '') echo 'style="color: #012E40;"'; else echo 'style="color: grey;" disabled'; ?>>Quitar filtros</span>
                                         </a>

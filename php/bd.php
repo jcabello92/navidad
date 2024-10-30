@@ -311,7 +311,7 @@ function cargar_delegados()
 
     try
     {
-        $sql = "SELECT DEL_RUT, DEL_NOMBRE, DEL_APELLIDO FROM delegados ORDER BY DEL_NOMBRE ASC, DEL_APELLIDO ASC, DEL_RUT ASC;";
+        $sql = "SELECT delegados.DEL_RUT, delegados.DEL_NOMBRE, delegados.DEL_APELLIDO FROM delegados WHERE NOT EXISTS (SELECT juntas_vecinales.DEL_RUT FROM juntas_vecinales WHERE juntas_vecinales.DEL_RUT = delegados.DEL_RUT) ORDER BY DEL_NOMBRE ASC, DEL_APELLIDO ASC, DEL_RUT ASC;";
         
         $listaF = [];
 
@@ -363,7 +363,14 @@ function mostrar_menores($tipo, $dato)
   {
     if($tipo != '' && $dato != '')
     {
-      $sql = "SELECT * FROM menores, sexos, juntas_vecinales WHERE menores.SEX_ID = sexos.SEX_ID AND menores.JV_ID = juntas_vecinales.JV_ID AND " . $tipo . " LIKE '%" . $dato . "%';";
+      if($tipo != 'JV_NOMBRE')
+      {
+        $sql = "SELECT * FROM menores, sexos, juntas_vecinales WHERE menores.SEX_ID = sexos.SEX_ID AND menores.JV_ID = juntas_vecinales.JV_ID AND menores." . $tipo . " LIKE '%" . $dato . "%';";
+      }
+      else
+      {
+        $sql = "SELECT * FROM menores, sexos, juntas_vecinales WHERE menores.SEX_ID = sexos.SEX_ID AND menores.JV_ID = juntas_vecinales.JV_ID AND juntas_vecinales." . $tipo . " LIKE '%" . $dato . "%';";
+      }
     }
     else if($tipo == '' || $dato == '')
     {
@@ -476,27 +483,20 @@ function mostrar_delegados($tipo, $dato)
 
   try
   {
-    $sql_jdv = "SELECT JV_NOMBRE, DEL_RUT FROM juntas_vecinales;";
-
-    $juntas_vecinales = [];
-
-    foreach($GLOBALS['mysqli']->query($sql_jdv) as $jdv)
-    {
-      $junta_vecinal = [];
-
-      array_push($junta_vecinal, $jdv['JV_NOMBRE']);
-      array_push($junta_vecinal, $jdv['DEL_RUT']);
-
-      array_push($juntas_vecinales, $junta_vecinal);
-    }
-
     if($tipo != '' && $dato != '')
     {
-      $sql = "SELECT * FROM delegados, sexos WHERE delegados.SEX_ID = sexos.SEX_ID AND " . $tipo . " LIKE '%" . $dato . "%';";
+      if($tipo != 'JV_NOMBRE')
+      {
+        $sql = "SELECT * FROM delegados, sexos, juntas_vecinales WHERE delegados.SEX_ID = sexos.SEX_ID AND delegados.DEL_RUT = juntas_vecinales.DEL_RUT AND delegados." . $tipo . " LIKE '%" . $dato . "%';";
+      }
+      else
+      {
+        $sql = "SELECT * FROM delegados, sexos, juntas_vecinales WHERE delegados.SEX_ID = sexos.SEX_ID AND delegados.DEL_RUT = juntas_vecinales.DEL_RUT AND juntas_vecinales." . $tipo . " LIKE '%" . $dato . "%';";
+      }
     }
     else if($tipo == '' || $dato == '')
     {
-      $sql = "SELECT * FROM delegados, sexos WHERE delegados.SEX_ID = sexos.SEX_ID;";
+      $sql = "SELECT * FROM delegados, sexos, juntas_vecinales WHERE delegados.SEX_ID = sexos.SEX_ID AND delegados.DEL_RUT = juntas_vecinales.DEL_RUT";
     }
 
     $listaF = [];
@@ -511,17 +511,7 @@ function mostrar_delegados($tipo, $dato)
       array_push($listaC, $delegado['SEX_NOMBRE']);
       array_push($listaC, $delegado['DEL_FECHA_NACIMIENTO']);
       array_push($listaC, $delegado['DEL_DIRECCION']);
-      for($i = 0; $i < count($juntas_vecinales); $i++)
-      {
-        if($juntas_vecinales[$i][1] == '')
-        {
-          array_push($listaC, '');
-        }
-        else
-        {
-          array_push($listaC, $juntas_vecinales[$i][0]);
-        }
-      }
+      array_push($listaC, $delegado['JV_NOMBRE']);
 
       array_push($listaF, $listaC);
     }
