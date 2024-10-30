@@ -30,8 +30,14 @@
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script src="sweetalert2.all.min.js"></script>
       <script src="../js/rut.js"></script>
+      <script src="../js/main.js"></script>
     </head>
     <!-- FIN HEAD -->
+
+    <form name="filtrar" id="filtrar" method="post" action="eliminar_menores.php">
+      <input type="text" style="display: none;" name="tipo" id="tipo" value="">
+      <input type="text" style="display: none;" name="dato" id="dato" value="">
+    </form>
 
     <!-- INICIO JAVASCRIPT -->
     <script>
@@ -68,12 +74,16 @@
     <?php
       include('../php/bd.php');
 
-      $tipo = '';
+      $tipo = 'MEN_RUT';
       $dato = '';
 
-      if(isset($_POST['tipo'], $_POST['dato']))
+      if(isset($_POST['tipo']))
       {
         $tipo = $_POST['tipo'];
+      }
+
+      if(isset($_POST['dato']))
+      {
         $dato = $_POST['dato'];
       }
 
@@ -82,7 +92,6 @@
         $tipo = '';
         $dato = '';
 
-        $_POST['tipo'] = null;
         $_POST['dato'] = null;
       }
     ?>
@@ -228,17 +237,16 @@
               <div class="col-xl-4 col-lg-5 col-md-7 mx-auto pt-3 pb-5">
               <form role="form text-left" name="buscar" method="post" action="eliminar_menores.php">
                   <div class="input-group">
-                      <select class="form-select" style="background-color: #ECEFF1" id="tipo" name="tipo">
-                          <option value="MEN_RUT" selected>RUT</option>
-                          <option value="MEN_NOMBRE">NOMBRE</option>
-                          <option value="MEN_APELLIDO">APELLIDO</option>
-                          <option value="JV_ID">JUNTA DE VECINOS</option>
-                          <option value="SEX_ID">SEXO</option>
+                      <select class="form-select" style="background-color: #ECEFF1" id="tipo_dato" name="tipo_dato">
+                            <option value="MEN_RUT" <?php if ($tipo == "MEN_RUT") echo "selected"; ?>>RUT</option>
+                            <option value="MEN_NOMBRE" <?php if ($tipo == "MEN_NOMBRE") echo "selected"; ?>>NOMBRE</option>
+                            <option value="MEN_APELLIDO" <?php if ($tipo == "MEN_APELLIDO") echo "selected"; ?>>APELLIDO</option>
+                            <option value="JV_NOMBRE" <?php if ($tipo == "JV_NOMBRE") echo "selected"; ?>>JUNTA DE VECINOS</option>
                       </select>
-                      <input type="text" class="form-control" style="width: 40%;" id="dato" name="dato">
+                      <input type="text" class="form-control" style="width: 40%;" id="buscar" <?php echo "value='" . $dato . "'"; ?>>
                   </div>
                   <div class="text-center">
-                      <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2" id="registrar">Buscar</button>
+                    <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" id="boton_buscar" onclick="filtrar_datos()">Buscar</button>
                   </div>
               </form>
               </div>
@@ -249,7 +257,7 @@
                             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4">
                                 <ul class="navbar-nav  justify-content-end">
                                     <li class="nav-item d-flex align-items-center">
-                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0" onclick="recargar_pagina('eliminar_menores.php')">
                                             <i class="bi bi-filter me-sm-1" <?php if($dato != '') echo 'style="color: #012E40;"'; else echo 'style="color: grey;" disabled'; ?>></i>
                                             <span class="d-sm-inline d-none" <?php if($dato != '') echo 'style="color: #012E40;"'; else echo 'style="color: grey;" disabled'; ?>>Quitar filtros</span>
                                         </a>

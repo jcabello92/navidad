@@ -30,8 +30,14 @@
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <script src="sweetalert2.all.min.js"></script>
       <script src="../js/rut.js"></script>
+      <script src="../js/main.js"></script>
     </head>
     <!-- FIN HEAD -->
+
+    <form name="filtrar" id="filtrar" method="post" action="eliminar_poblaciones.php">
+      <input type="text" style="display: none;" name="tipo" id="tipo" value="">
+      <input type="text" style="display: none;" name="dato" id="dato" value="">
+    </form>
 
     <!-- INICIO JAVASCRIPT -->
     <script>
@@ -61,6 +67,11 @@
           }
         }
       }
+
+      function eliminar_elementos()
+      {
+        document.getElementById('lista').submit();
+      }
     </script>
     <!-- FIN JAVASCRIPT -->
 
@@ -68,13 +79,38 @@
     <?php
       include('../php/bd.php');
 
-      $tipo = '';
+      $tipo = 'POB_NOMBRE';
       $dato = '';
 
-      if(isset($_POST['tipo'], $_POST['dato']))
+      if(isset($_POST['tipo']))
       {
         $tipo = $_POST['tipo'];
+      }
+
+      if(isset($_POST['dato']))
+      {
         $dato = $_POST['dato'];
+      }
+
+      $seleccionados = array();
+
+      $sql = "DELETE FROM poblaciones WHERE POB_ID IN (";
+
+      foreach($_POST as $campo => $valor)
+      {
+        if($sql != "DELETE FROM poblaciones WHERE POB_ID IN (")
+        {
+          $sql = $sql . ",";
+        }
+
+        $sql = $sql . " '" . $valor . "'";
+      }
+
+      $sql = $sql . ");";
+
+      if($sql != "DELETE FROM poblaciones WHERE POB_ID IN ();")
+      {
+        eliminar($sql);
       }
 
       function limpiar_datos()
@@ -82,7 +118,6 @@
         $tipo = '';
         $dato = '';
 
-        $_POST['tipo'] = null;
         $_POST['dato'] = null;
       }
     ?>
@@ -228,13 +263,13 @@
               <div class="col-xl-4 col-lg-5 col-md-7 mx-auto pt-3 pb-5">
                 <form role="form text-left" name="buscar" method="post" action="eliminar_poblaciones.php">
                   <div class="input-group">
-                    <select class="form-select" style="background-color: #ECEFF1" id="tipo" name="tipo">
-                      <option value="POB_NOMBRE" selected>NOMBRE</option>
-                    </select>
-                    <input type="text" class="form-control" style="width: 40%;" id="dato" name="dato">
+                      <select class="form-select" style="background-color: #ECEFF1" id="tipo_dato">
+                          <option value="POB_NOMBRE" <?php if ($tipo == "POB_NOMBRE") echo "selected"; ?>>NOMBRE</option>
+                      </select>
+                      <input type="text" class="form-control" style="width: 40%;" id="buscar" <?php echo "value='" . $dato . "'"; ?>>
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2" id="registrar">Buscar</button>
+                      <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" id="boton_buscar" onclick="filtrar_datos()">Buscar</button>
                   </div>
                 </form>
               </div>
@@ -245,13 +280,13 @@
                             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4">
                                 <ul class="navbar-nav  justify-content-end">
                                     <li class="nav-item d-flex align-items-center">
-                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0" onclick="recargar_pagina('eliminar_poblaciones.php')">
                                             <i class="bi bi-filter me-sm-1" <?php if($dato != '') echo 'style="color: #012E40;"'; else echo 'style="color: grey;" disabled'; ?>></i>
                                             <span class="d-sm-inline d-none" <?php if($dato != '') echo 'style="color: #012E40;"'; else echo 'style="color: grey;" disabled'; ?>>Quitar filtros</span>
                                         </a>
                                     </li>
                                     <li class="nav-item px-4 d-flex align-items-center">
-                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0" onclick="eliminar_elementos()">
                                             <i class="bi bi-trash-fill me-sm-1" <?php if($dato != '') echo 'style="color: red;"'; else echo 'style="color: grey;" disabled'; ?>></i>
                                             <span class="d-sm-inline d-none" <?php if($dato != '') echo 'style="color: red;"'; else echo 'style="color: grey;" disabled'; ?>>Eliminar seleccionadas</span>
                                         </a>
@@ -273,6 +308,7 @@
                         </tr>
                       </thead>
                       <tbody>
+                        <form role="form text-left" id="lista" name="lista" method="post" action="eliminar_poblaciones.php">
                         <?php
                           $poblaciones = mostrar_poblaciones($tipo, $dato);
 
@@ -285,7 +321,7 @@
                               echo '<tr>';
                               echo '<td class="align-middle text-center">';
                               echo '<div class="align-middle text-center text-sm">';
-                              echo '<input class="align-middle text-center text-sm" type="checkbox" value="" id="seleccionar_' . $poblaciones[$i][0] . '" name="seleccionar_' . $poblaciones[$i][0] . '">';
+                              echo '<input class="align-middle text-center text-sm" type="checkbox" value="' . $poblaciones[$i][0] . '" id="seleccionar_' . $poblaciones[$i][0] . '" name="seleccionar_' . $poblaciones[$i][0] . '">';
                               echo '</div>';
                               echo '</td>';
                               echo '<td class="text-center text-xs font-weight-bolder col-11">';
@@ -295,6 +331,7 @@
                             }
                           }
                         ?>
+                        </form>
                       </tbody>
                     </table>
                   </div>

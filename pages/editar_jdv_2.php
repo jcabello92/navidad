@@ -363,7 +363,7 @@
                                                 $option = $option . " selected";
                                               }
                                             }
-                                            $option = $option . ">" . $delegados[$i][1] . $delegados[$i][2] . " | " . $delegados[$i][0] . "</option>";
+                                            $option = $option . ">" . $delegados[$i][1] . " " . $delegados[$i][2] . " | " . $delegados[$i][0] . "</option>";
                                             echo $option;
                                           }
                                         }
