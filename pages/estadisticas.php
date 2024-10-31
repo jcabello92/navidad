@@ -157,11 +157,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="descarga_documentacion.php">
-                            <span class="nav-link-text ms-1">Descargar documentación adicional</span>
+                            <span class="nav-link-text ms-1">Descargar documentación</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="estadisticas.php">
+                        <a class="nav-link active" href="estadisticas.php">
                             <span class="nav-link-text ms-1">Estadísticas Generales</span>
                         </a>
                     </li>

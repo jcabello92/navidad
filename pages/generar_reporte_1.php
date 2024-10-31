@@ -146,7 +146,7 @@
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="generar_reporte_1.php">
+                        <a class="nav-link active" href="generar_reporte_1.php">
                             <span class="nav-link-text ms-1">Generar reportes simplificados</span>
                         </a>
                     </li>
@@ -157,7 +157,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="descarga_documentacion.php">
-                            <span class="nav-link-text ms-1">Descargar documentación adicional</span>
+                            <span class="nav-link-text ms-1">Descargar documentación</span>
                         </a>
                     </li>
                     <li class="nav-item">

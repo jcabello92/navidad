@@ -151,13 +151,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="generar_reporte_2.php">
+                        <a class="nav-link active" href="generar_reporte_2.php">
                             <span class="nav-link-text ms-1">Generar reportes detallados</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="descarga_documentacion.php">
-                            <span class="nav-link-text ms-1">Descargar documentación adicional</span>
+                            <span class="nav-link-text ms-1">Descargar documentación</span>
                         </a>
                     </li>
                     <li class="nav-item">

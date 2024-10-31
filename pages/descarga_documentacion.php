@@ -156,8 +156,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="descarga_documentacion.php">
-                            <span class="nav-link-text ms-1">Descargar documentación adicional</span>
+                        <a class="nav-link active" href="descarga_documentacion.php">
+                            <span class="nav-link-text ms-1">Descargar documentación</span>
                         </a>
                     </li>
                     <li class="nav-item">
