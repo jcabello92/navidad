@@ -353,16 +353,21 @@
                                               echo '<td class="text-center text-xs font-weight-bolder col-3">';
                                               $juntas_vecinales_temporal = array();
 
-                                              for($j = 0; $j < count($juntas_vecinales); $j++)
+                                              if($juntas_vecinales != NULL)
                                               {
-                                                if($delegados[$i][0] == $juntas_vecinales[$j][4])
+                                                for($j = 0; $j < count($juntas_vecinales); $j++)
                                                 {
-                                                    array_push($juntas_vecinales_temporal, $juntas_vecinales[$j][1]);
+                                                    if($delegados[$i][0] == $juntas_vecinales[$j][4])
+                                                    {
+                                                        array_push($juntas_vecinales_temporal, $juntas_vecinales[$j][1]);
+                                                    }
                                                 }
                                               }
 
                                               $aux = '<p class="text-xs font-weight-bold mx-2 mb-0">';
 
+                                              if($juntas_vecinales != NULL)
+                                              {
                                                 for($j = 0; $j < count($juntas_vecinales_temporal); $j++)
                                                 {
                                                     if($j > 0 && $j < (count($juntas_vecinales_temporal) - 1))
@@ -371,6 +376,7 @@
                                                     }
                                                     $aux = $aux . $juntas_vecinales_temporal[$j];
                                                 }
+                                              }
 
                                               $aux = $aux . '</p>';
 

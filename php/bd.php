@@ -487,7 +487,7 @@ function mostrar_delegados($tipo, $dato)
     {
       if($tipo != 'JV_NOMBRE')
       {
-        $sql = "SELECT delegados.DEL_RUT, delegados.DEL_NOMBRE, delegados.DEL_APELLIDO, sexos.SEX_NOMBRE, delegados.DEL_FECHA_NACIMIENTO, delegados.DEL_DIRECCION FROM delegados, sexos, juntas_vecinales WHERE delegados.SEX_ID = sexos.SEX_ID AND delegados." . $tipo . " LIKE '%" . $dato . "%';";
+        $sql = "SELECT delegados.DEL_RUT, delegados.DEL_NOMBRE, delegados.DEL_APELLIDO, sexos.SEX_NOMBRE, delegados.DEL_FECHA_NACIMIENTO, delegados.DEL_DIRECCION FROM delegados, sexos WHERE delegados.SEX_ID = sexos.SEX_ID AND delegados." . $tipo . " LIKE '%" . $dato . "%';";
       }
       else
       {
@@ -496,7 +496,7 @@ function mostrar_delegados($tipo, $dato)
     }
     else if($tipo == '' || $dato == '')
     {
-      $sql = "SELECT delegados.DEL_RUT, delegados.DEL_NOMBRE, delegados.DEL_APELLIDO, sexos.SEX_NOMBRE, delegados.DEL_FECHA_NACIMIENTO, delegados.DEL_DIRECCION FROM delegados, sexos, juntas_vecinales WHERE delegados.SEX_ID = sexos.SEX_ID;";
+      $sql = "SELECT delegados.DEL_RUT, delegados.DEL_NOMBRE, delegados.DEL_APELLIDO, sexos.SEX_NOMBRE, delegados.DEL_FECHA_NACIMIENTO, delegados.DEL_DIRECCION FROM delegados, sexos WHERE delegados.SEX_ID = sexos.SEX_ID;";
     }
 
     $listaF = [];
