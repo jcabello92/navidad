@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <!-- INICIO HEAD -->
     <head>
-      <meta charset="utf-8"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
-      <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-      <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  
-      <title>Sistema Navidad Curicó</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    
+        <title>Sistema Navidad Curicó</title>
 
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  
-      <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-      <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  
-      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-      <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
-      <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
-  
-      <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    
+        <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+        <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    
+        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+        <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+        <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+    
+        <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 
-      <!-- CSS -->
-      <link rel="stylesheet" href="../css/main.css"/>
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/main.css"/>
 
-      <!-- JS -->
-      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-      <script src="sweetalert2.all.min.js"></script>
-      <script src="../js/rut.js"></script>
+        <!-- JS -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="sweetalert2.all.min.js"></script>
+        <script src="../js/rut.js"></script>
     </head>
     <!-- FIN HEAD -->
 
     <!-- INICIO VARIABLES DE SESIÓN -->
     <?php
-      /*if($_SESSION['usuario'] != '') // CAMBIAR
-      {
-        header("Location: inicio.php");
-      }*/
+        /*if($_SESSION['usuario'] != '') // CAMBIAR
+        {
+            header("Location: inicio.php");
+        }*/
 
-      function avanzar($usuario, $contrasena)
-      {
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['contrasena'] = $contrasena;
-        $_SESSION['pag_anterior'] = 'menu_principal.php';
-      }
+        function avanzar($usuario, $contrasena)
+        {
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['contrasena'] = $contrasena;
+            $_SESSION['pag_anterior'] = 'menu_principal.php';
+        }
     ?>
     <!-- FIN VARIABLES DE SESIÓN -->
 
@@ -140,6 +140,32 @@
                         </a>
                     </li>
                     <!-- FIN ELIMINAR -->
+
+                    <!-- INICIO REPORTES -->
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="generar_reporte_1.php">
+                            <span class="nav-link-text ms-1">Generar reportes simplificados</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="generar_reporte_2.php">
+                            <span class="nav-link-text ms-1">Generar reportes detallados</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="descarga_documentacion.php">
+                            <span class="nav-link-text ms-1">Descargar documentación adicional</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="estadisticas.php">
+                            <span class="nav-link-text ms-1">Estadísticas Generales</span>
+                        </a>
+                    </li>
+                    <!-- FIN REPORTES -->
                 </ul>
             </div>
         </aside>
@@ -365,6 +391,76 @@
                     </div>
                 </div>
                 <!-- FIN POBLACIONES -->
+
+                <!-- INICIO REPORTES -->
+                <div class="row mt-4">
+                    <div class="col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../assets/img/reg_poblacion.png');">
+                                <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+                                    <h5 class="text-white font-weight-bolder mb-4 pt-2">GENERAR UN REPORTE SIMPLIFICADO</h5>
+                                    <p class="text-white">Genere un reporte en PDF acerca de la cantidad de menores inscritos por junta de vecinos.</p>
+                                    <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="generar_reporte_1.php">
+                                        IR AL TRÁMITE
+                                        <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../assets/img/reg_poblacion.png');">
+                                <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+                                    <h5 class="text-white font-weight-bolder mb-4 pt-2">GENERAR UN REPORTE DETALLADO</h5>
+                                    <p class="text-white">Genere un reporte en PDF acerca de los menores inscritos por junta de vecinos.</p>
+                                    <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="generar_reporte_2.php">
+                                        IR AL TRÁMITE
+                                        <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../assets/img/reg_poblacion.png');">
+                                <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+                                    <h5 class="text-white font-weight-bolder mb-4 pt-2">DESCARGAR DOCUMENTACIÓN ADICIONAL</h5>
+                                    <p class="text-white">Descargue documentación adicional útil.</p>
+                                    <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="descarga_documentacion.php">
+                                        IR AL TRÁMITE
+                                        <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIN REPORTES -->
+
+                <!-- INICIO ESTADISTICAS -->
+                <div class="row mt-4">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card h-100 p-3">
+                            <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../assets/img/reg_poblacion.png');">
+                                <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+                                    <h5 class="text-white font-weight-bolder mb-4 pt-2">ESTADÍSTICAS GENERALES</h5>
+                                    <p class="text-white">Revise estadísticas interesantes acerca del uso del sistema.</p>
+                                    <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="estadisticas.php">
+                                        IR AL TRÁMITE
+                                        <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
+                <!-- FIN ESTADISTICAS -->
             </div>
             <!-- FIN BLOQUE PRINCIPAL -->
 

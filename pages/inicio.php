@@ -1,49 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <!-- INICIO HEAD -->
     <head>
-      <meta charset="utf-8"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
-      <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-      <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  
-      <title>Sistema Navidad Curicó</title>
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    
+        <title>Sistema Navidad Curicó</title>
 
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-  
-      <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-      <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  
-      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-      <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
-      <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
-  
-      <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    
+        <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+        <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    
+        <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+        <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+        <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+    
+        <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
 
-      <!-- CSS -->
-      <link rel="stylesheet" href="../css/main.css"/>
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/main.css"/>
 
-      <!-- JS -->
-      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-      <script src="sweetalert2.all.min.js"></script>
-      <script src="../js/rut.js"></script>
+        <!-- JS -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="sweetalert2.all.min.js"></script>
+        <script src="../js/rut.js"></script>
+        <script src="../js/main.js"></script>
     </head>
     <!-- FIN HEAD -->
 
     <!-- INICIO VARIABLES DE SESIÓN -->
     <?php
-      $_SESSION['usuario'] = '';
-      $_SESSION['contrasena'] = '';
+        $_SESSION['usuario'] = '';
+        $_SESSION['contrasena'] = '';
 
-      function iniciar_sesion($usuario, $contrasena)
-      {
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['contrasena'] = $contrasena;
-        $_SESSION['pag_anterior'] = 'inicio.php';
-      }
+        function iniciar_sesion($usuario, $contrasena)
+        {
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['contrasena'] = $contrasena;
+            $_SESSION['pag_anterior'] = 'inicio.php';
+        }
     ?>
     <!-- FIN VARIABLES DE SESIÓN -->
 

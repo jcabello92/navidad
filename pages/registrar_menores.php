@@ -293,6 +293,32 @@
                         </a>
                     </li>
                     <!-- FIN ELIMINAR -->
+
+                    <!-- INICIO REPORTES -->
+                    <li class="nav-item mt-3">
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Reportes</h6>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="generar_reporte_1.php">
+                            <span class="nav-link-text ms-1">Generar reportes simplificados</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="generar_reporte_2.php">
+                            <span class="nav-link-text ms-1">Generar reportes detallados</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="descarga_documentacion.php">
+                            <span class="nav-link-text ms-1">Descargar documentación adicional</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="estadisticas.php">
+                            <span class="nav-link-text ms-1">Estadísticas Generales</span>
+                        </a>
+                    </li>
+                    <!-- FIN REPORTES -->
                 </ul>
             </div>
         </aside>
