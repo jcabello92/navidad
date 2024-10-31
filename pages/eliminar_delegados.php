@@ -67,6 +67,11 @@
           }
         }
       }
+
+      function eliminar_elementos()
+      {
+        document.getElementById('lista').submit();
+      }
     </script>
     <!-- FIN JAVASCRIPT -->
 
@@ -85,6 +90,27 @@
       if(isset($_POST['dato']))
       {
         $dato = $_POST['dato'];
+      }
+
+      $seleccionados = array();
+
+      $sql = "DELETE FROM delegados WHERE DEL_RUT IN (";
+
+      foreach($_POST as $campo => $valor)
+      {
+        if($sql != "DELETE FROM delegados WHERE DEL_RUT IN (")
+        {
+          $sql = $sql . ",";
+        }
+
+        $sql = $sql . " '" . $valor . "'";
+      }
+
+      $sql = $sql . ");";
+
+      if($sql != "DELETE FROM delegados WHERE DEL_RUT IN ();")
+      {
+        eliminar($sql);
       }
 
       function limpiar_datos()
@@ -263,7 +289,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item px-4 d-flex align-items-center">
-                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0" onclick="eliminar_elementos()">
                                             <i class="bi bi-trash-fill me-sm-1" <?php if($dato != '') echo 'style="color: red;"'; else echo 'style="color: grey;" disabled'; ?>></i>
                                             <span class="d-sm-inline d-none" <?php if($dato != '') echo 'style="color: red;"'; else echo 'style="color: grey;" disabled'; ?>>Eliminar seleccionadas</span>
                                         </a>
@@ -290,8 +316,10 @@
                                   </tr>
                               </thead>
                               <tbody>
+                              <form role="form text-left" id="lista" name="lista" method="post" action="eliminar_delegados.php">
                                       <?php
                                           $delegados = mostrar_delegados($tipo, $dato);
+                                          $juntas_vecinales = mostrar_jdv('', '');
 
                                           if($delegados != null)
                                           {
@@ -304,7 +332,7 @@
                                               echo '<tr>';
                                               echo '<td class="align-middle text-center">';
                                               echo '<div class="align-middle text-center text-sm">';
-                                              echo '<input class="align-middle text-center text-sm" type="checkbox" value="" id="seleccionar_' . $indice . '" name="seleccionar_' . $indice . '">';
+                                              echo '<input class="align-middle text-center text-sm" type="checkbox" value="' . $delegados[$i][0] . '" id="seleccionar_' . $indice . '" name="seleccionar_' . $indice . '">';
                                               echo '</div>';
                                               echo '</td>';
                                               echo '<td class="text-center text-xs font-weight-bolder col-1">';
@@ -323,12 +351,39 @@
                                               echo '<p class="text-xs font-weight-bold mx-2 mb-0">' . $delegados[$i][5] . '</p>';
                                               echo '</td>';
                                               echo '<td class="text-center text-xs font-weight-bolder col-3">';
-                                              echo '<p class="text-xs font-weight-bold mx-2 mb-0">' . $delegados[$i][6] . '</p>';
+                                              $juntas_vecinales_temporal = array();
+
+                                              for($j = 0; $j < count($juntas_vecinales); $j++)
+                                              {
+                                                if($delegados[$i][0] == $juntas_vecinales[$j][4])
+                                                {
+                                                    array_push($juntas_vecinales_temporal, $juntas_vecinales[$j][1]);
+                                                }
+                                              }
+
+                                              $aux = '<p class="text-xs font-weight-bold mx-2 mb-0">';
+
+                                                for($j = 0; $j < count($juntas_vecinales_temporal); $j++)
+                                                {
+                                                    if($j > 0 && $j < (count($juntas_vecinales_temporal) - 1))
+                                                    {
+                                                        $aux = $aux . ', ';
+                                                    }
+                                                    $aux = $aux . $juntas_vecinales_temporal[$j];
+                                                }
+
+                                              $aux = $aux . '</p>';
+
+                                              if($aux != '<p class="text-xs font-weight-bold mx-2 mb-0"></p>')
+                                              {
+                                                echo $aux;
+                                              }
                                               echo '</td>';
                                               echo "</tr>";
                                             }
                                           }
                                       ?>
+                                      </form>
                               </tbody>
                           </table>
                       </div>

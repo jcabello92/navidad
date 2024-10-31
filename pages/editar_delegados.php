@@ -267,6 +267,7 @@
 
                                       <?php
                                           $delegados = mostrar_delegados($tipo, $dato);
+                                          $juntas_vecinales = mostrar_jdv('', '');
 
                                           if($delegados != null)
                                           {
@@ -289,7 +290,33 @@
                                               echo '<p class="text-xs font-weight-bold mx-2 mb-0">' . $delegados[$i][5] . '</p>';
                                               echo '</td>';
                                               echo '<td class="text-center text-xs font-weight-bolder col-3">';
-                                              echo '<p class="text-xs font-weight-bold mx-2 mb-0">' . $delegados[$i][6] . '</p>';
+                                              $juntas_vecinales_temporal = array();
+
+                                              for($j = 0; $j < count($juntas_vecinales); $j++)
+                                              {
+                                                if($delegados[$i][0] == $juntas_vecinales[$j][4])
+                                                {
+                                                    array_push($juntas_vecinales_temporal, $juntas_vecinales[$j][1]);
+                                                }
+                                              }
+
+                                              $aux = '<p class="text-xs font-weight-bold mx-2 mb-0">';
+
+                                                for($j = 0; $j < count($juntas_vecinales_temporal); $j++)
+                                                {
+                                                    if($j > 0 && $j < (count($juntas_vecinales_temporal) - 1))
+                                                    {
+                                                        $aux = $aux . ', ';
+                                                    }
+                                                    $aux = $aux . $juntas_vecinales_temporal[$j];
+                                                }
+
+                                              $aux = $aux . '</p>';
+
+                                              if($aux != '<p class="text-xs font-weight-bold mx-2 mb-0"></p>')
+                                              {
+                                                echo $aux;
+                                              }
                                               echo '</td>';
                                               echo '<td class="align-middle text-center">';
                                               echo '<a href="javascript:;" class="align-middle text-center text-sm">';

@@ -67,6 +67,11 @@
           }
         }
       }
+
+      function eliminar_elementos()
+      {
+        document.getElementById('lista').submit();
+      }
     </script>
     <!-- FIN JAVASCRIPT -->
 
@@ -85,6 +90,27 @@
       if(isset($_POST['dato']))
       {
         $dato = $_POST['dato'];
+      }
+
+      $seleccionados = array();
+
+      $sql = "DELETE FROM menores WHERE MEN_RUT IN (";
+
+      foreach($_POST as $campo => $valor)
+      {
+        if($sql != "DELETE FROM menores WHERE MEN_RUT IN (")
+        {
+          $sql = $sql . ",";
+        }
+
+        $sql = $sql . " '" . $valor . "'";
+      }
+
+      $sql = $sql . ");";
+
+      if($sql != "DELETE FROM menores WHERE MEN_RUT IN ();")
+      {
+        eliminar($sql);
       }
 
       function limpiar_datos()
@@ -263,7 +289,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item px-4 d-flex align-items-center">
-                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                                        <a href="javascript:;" class="nav-link text-body font-weight-bold px-0" onclick="eliminar_elementos()">
                                             <i class="bi bi-trash-fill me-sm-1" <?php if($dato != '') echo 'style="color: red;"'; else echo 'style="color: grey;" disabled'; ?>></i>
                                             <span class="d-sm-inline d-none" <?php if($dato != '') echo 'style="color: red;"'; else echo 'style="color: grey;" disabled'; ?>>Eliminar seleccionadas</span>
                                         </a>
@@ -290,6 +316,7 @@
                                   </tr>
                               </thead>
                               <tbody>
+                              <form role="form text-left" id="lista" name="lista" method="post" action="eliminar_menores.php">
                                     <?php
                                       $menores = mostrar_menores($tipo, $dato);
 
@@ -304,7 +331,7 @@
                                               echo '<tr>';
                                               echo '<td class="align-middle text-center">';
                                               echo '<div class="align-middle text-center text-sm">';
-                                              echo '<input class="align-middle text-center text-sm" type="checkbox" value="" id="seleccionar_' . $indice . '" name="seleccionar_' . $indice . '">';
+                                              echo '<input class="align-middle text-center text-sm" type="checkbox" value="' . $menores[$i][0] . '" id="seleccionar_' . $indice . '" name="seleccionar_' . $indice . '">';
                                               echo '</div>';
                                               echo '</td>';
                                               echo '<td class="text-center text-xs font-weight-bolder col-1">';
@@ -329,6 +356,7 @@
                                         }
                                       }
                                     ?>
+                                    </form>
                               </tbody>
                           </table>
                       </div>
