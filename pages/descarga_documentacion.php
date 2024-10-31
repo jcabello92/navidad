@@ -49,6 +49,16 @@
     ?>
     <!-- FIN VARIABLES DE SESIÓN -->
 
+    <script>
+        function redireccionar(documento)
+        {
+            if(documento == 'acuso_recibo')
+            {
+                window.location.href = "../php/acuso_recibo.php";
+            }
+        }
+    </script>
+
     <!-- INICIO BODY -->
     <body class="g-sidenav-show bg-gray-100">
         <!-- INICIO BARRA LATERAL -->
@@ -203,7 +213,7 @@
 
             <!-- INICIO BLOQUE PRINCIPAL -->
             <div class="container-fluid py-0">
-
+                <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" id="acuso_recibo" onclick="redireccionar('acuso_recibo')">Descargar Acuso Recibo</button>
             </div>
             <!-- FIN BLOQUE PRINCIPAL -->
 
