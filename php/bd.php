@@ -5,19 +5,19 @@
 
 /* SERVIDOR DE PRUEBAS */
 
+/*
 $GLOBALS['servidor'] = 'localhost';
 $GLOBALS['usuario_servidor'] = 'root';
 $GLOBALS['contrasena_servidor'] = '';
 $GLOBALS['bd'] = 'navidad';
+*/
 
 /* SERVIDOR OFICIAL */
 
-/*
 $GLOBALS['servidor'] = 'localhost';
-$GLOBALS['usuario_servidor'] = 'admin_denuncia';
-$GLOBALS['contrasena_servidor'] = '#D3nunc14$++';
-$GLOBALS['bd'] = 'admin_maltratoanimal';
-*/
+$GLOBALS['usuario_servidor'] = 'jonatha1_navidad';
+$GLOBALS['contrasena_servidor'] = '#N4v1d4D*';
+$GLOBALS['bd'] = 'jonatha1_navidad';
 
 $GLOBALS['mysqli'] = new mysqli();
 
