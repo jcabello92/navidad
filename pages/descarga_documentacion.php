@@ -213,7 +213,15 @@
 
             <!-- INICIO BLOQUE PRINCIPAL -->
             <div class="container-fluid py-0">
-                <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" id="acuso_recibo" onclick="redireccionar('acuso_recibo')">Descargar Acuso Recibo</button>
+                <div class="row mt-4">
+                    <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-4">
+                        <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2" id="acuso_recibo" onclick="redireccionar('acuso_recibo')">Descargar Acuso Recibo</button>
+                    </div>
+                    <div class="col-lg-4">
+                    </div>
+                </div>
             </div>
             <!-- FIN BLOQUE PRINCIPAL -->
 
